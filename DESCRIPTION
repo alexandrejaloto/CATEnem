@@ -1,0 +1,18 @@
+Package: CATEnem
+Title: CAT Enem
+Version: 0.0.0.9000
+Authors@R: person('Alexandre', 'Jaloto', email = 'alexandrejaloto@gmail.com', role = c('cre', 'aut'))
+Description: Exame NAcional do Ensino Médio (Enem) versão em formato de Testagem Adaptativa Computadorizada (CAT).
+License: What license is it under?
+Imports: 
+    config (>= 0.3.1),
+    golem (>= 0.3.1),
+    shiny (>= 1.7.1),
+    simCAT (>= 0.0.0.9000)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+Remotes: 
+    github::alexandrejaloto/simCAT
+Depends: 
+    R (>= 2.10)
