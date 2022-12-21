@@ -20,12 +20,12 @@ usethis::use_dev_package('simCAT', remote = 'github::alexandrejaloto/simCAT')
 
 ## Add modules ----
 ## Create a module infrastructure in R/
-golem::add_module( name = "apresentacao" ) # Name of the module
-golem::add_module( name = "CH" ) # Name of the module
+golem::add_module( name = "devolutiva" ) # Name of the module
+golem::add_module( name = "CH_aut" ) # Name of the module
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
-golem::add_fct( "helpers" )
+golem::add_fct( 'r_fim' )
 golem::add_utils( "helpers" )
 
 ## External resources

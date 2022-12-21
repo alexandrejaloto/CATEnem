@@ -107,9 +107,11 @@ mod_apresentacao_server <- function(id){
     observeEvent(input$avancar, {
       if(input$prova == 'CH'){
         output$ui <- renderUI(mod_CH_ui("CH_ui_1"))
+        # output$ui <- renderUI(mod_CH_aut_ui("CH_aut_1"))
       }
-      # if(input$menor_maior == "CH"){
+      # if(input$prova == "CN"){
       #   output$ui <- renderUI(mod_TCLE_ui("TCLE_1"))
+
       # }
       # if(input$menor_maior == "CH"){
       #   output$ui <- renderUI(mod_TCLE_ui("TCLE_1"))
