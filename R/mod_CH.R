@@ -82,45 +82,46 @@ mod_CH_server <- function(id, r){
         )
       } else {
 
-        r$CH <- atualiza_r_cat(
+        # verifica se estourou o tempo
+        r$CH <- estourou_tempo(
           mod = r$CH,
-          it_select = it_select(),
-          input = input$alternativas,
-          df = df_CH,
-          modelo_cat = modelo_CH
+          tempo_limite = .1
         )
 
-        r$CH$fim <- fim_cat(
-          # criterios
-          rule = list(
-            fixed = 1,
-            tempo_limite = 1000.5
-          ),
-          current = list(
-            applied = length(r$CH$aplicados),
-            hist_resp_time = r$CH$hist_resp_time
+        # se estourou o tempo, interrompe a aplicação
+        if(r$CH$tempo_estourado){
+
+          r$CH$fim$stop <- TRUE
+
+          # se não estourou o tempo, aplica o próximo item
+        } else {
+
+          r$CH <- atualiza_r_cat(
+            mod = r$CH,
+            it_select = it_select(),
+            input = input$alternativas,
+            df = df_CH,
+            modelo_cat = modelo_CH
           )
-        )
 
+          r$CH$fim <- fim_cat(
+            # criterios
+            rule = list(
+              fixed = 5
+              # tempo_limite = .05
+            ),
+            current = list(
+              applied = length(r$CH$aplicados)
+              # hist_resp_time = r$CH$hist_resp_time
+            )
+          )
+        }
         if(r$CH$fim$stop){
 
-          # r <- r_fim(r)
-
-          r$theta_enem <- transform_nota(
-            nota_01 = r$CH$theta,
+          r <- r_fim(
+            r = r,
             area = 'CH'
-          )
-
-          r$theta_hist <- transform_nota(
-            nota_01 = r$CH$theta_hist,
-            area = 'CH'
-          )
-
-          r$padrao <- r$CH$padrao
-
-          r$aplicados <- r$CH$aplicados
-
-          r$tempo <- r$CH$hist_resp_time
+            )
 
           r$grafico <- cria_grafico(
             info = r

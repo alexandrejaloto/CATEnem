@@ -25,7 +25,7 @@ golem::add_module( name = "CH_aut" ) # Name of the module
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
-golem::add_fct( 'r_fim' )
+golem::add_fct( 'estourou_tempo' )
 golem::add_utils( "helpers" )
 
 ## External resources

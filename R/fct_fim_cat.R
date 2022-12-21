@@ -99,10 +99,13 @@ fim_cat <- function(
       convergence <- TRUE
   }
 
-  # Convergência por tempo
-  if(!is.null(current$hist_resp_time)){
+  tempo_estourado <- NULL
 
-    if(is.null(rule$tempo_limite)) stop('Favor informar o tempo limite')
+  # Convergência por tempo
+  if(!is.null(rule$tempo_limite)){
+
+    if(is.null(current$hist_resp_time))
+      stop('Favor informar o histórico do tempo de prova')
 
     tempo_estourado <- difftime(
       current$hist_resp_time[length(current$hist_resp_time)],
@@ -118,17 +121,19 @@ fim_cat <- function(
 
   stop <- list(
     stop = stop,
-    convergence = convergence,
-    tempo_estourado = tempo_estourado
+    convergence = convergence
   )
 
-# fim <- list(
-#     fim = fim,
-#     convergencia = convergencia,
-#     tempo_estourado = tempo_estourado
-#   )
+  if (!is.null(tempo_estourado))
+  stop$tempo_estourado <- tempo_estourado
 
-    return(stop)
+  # fim <- list(
+  #     fim = fim,
+  #     convergencia = convergencia,
+  #     tempo_estourado = tempo_estourado
+  #   )
+
+  return(stop)
 
 }
 

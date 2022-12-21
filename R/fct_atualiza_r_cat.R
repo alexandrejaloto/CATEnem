@@ -16,7 +16,7 @@ atualiza_r_cat <- function(
   df <- df[!grepl('instrucao$', df$cod_item),]
 
   # hora de resposta
-  mod$hist_resp_time <- c(mod$hist_resp_time, Sys.time())
+  # mod$hist_resp_time <- c(mod$hist_resp_time, Sys.time())
 
   # atualizar o padrão de resposta -----
   mod$padrao[it_select] <- mirt::key2binary(

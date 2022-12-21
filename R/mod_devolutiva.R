@@ -41,8 +41,7 @@ mod_devolutiva_server <- function(id, r){
           br(),
           'Seu tempo de prova foi ',
           r$tempo,
-
-
+          ' minutos.',
           br(),
           br(),
           'A seguir você pode ver um gráfico que representa a sua jornada
