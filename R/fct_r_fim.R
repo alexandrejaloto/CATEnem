@@ -8,15 +8,6 @@
 r_fim <- function(r, area)
 {
 
-  # se estourou o tempo, desconsidera o último item
-  # if(r$CH$fim$tempo_estourado)
-  #   respondidos <- r[[area]]$aplicados[-length(r[[area]]$aplicados)]
-  #
-  #
-  # r[[area]]$padrao
-
-  # r[[area]]$theta <- r[[area]]$theta_hist[[length(r[[area]]$aplicados)]]
-
   r$theta_enem <- transform_nota(
     nota_01 = r[[area]]$theta,
     area = area

@@ -108,11 +108,9 @@ mod_CH_server <- function(id, r){
             # criterios
             rule = list(
               fixed = 5
-              # tempo_limite = .05
             ),
             current = list(
               applied = length(r$CH$aplicados)
-              # hist_resp_time = r$CH$hist_resp_time
             )
           )
         }

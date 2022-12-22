@@ -23,6 +23,7 @@ mod_apresentacao_server <- function(id){
 
     output$ui <- renderUI({
       tagList(
+        img(src = 'www/enem200905907.jpg'),
         h1('CATEnem'),
         'Você poderá responder à CATEnem, que é uma versão adaptativa do Enem. CAT é a sigla para
         Testagem Adaptativa Computadorizada em português. Nesse tipo de
@@ -107,7 +108,6 @@ mod_apresentacao_server <- function(id){
     observeEvent(input$avancar, {
       if(input$prova == 'CH'){
         output$ui <- renderUI(mod_CH_ui("CH_ui_1"))
-        # output$ui <- renderUI(mod_CH_aut_ui("CH_aut_1"))
       }
       # if(input$prova == "CN"){
       #   output$ui <- renderUI(mod_TCLE_ui("TCLE_1"))

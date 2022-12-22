@@ -47,13 +47,15 @@ mod_devolutiva_server <- function(id, r){
           'A seguir você pode ver um gráfico que representa a sua jornada
           neste teste. Em cada ponto, o acerto é representado por um
           círculo e o
-          erro é representado por um “X”. O triângulo representa o
-          início da aplicação, quando nenhuma questão havia sido
-          administrada. Em um teste adaptativo, as questões são
+          erro é representado por um “X”.
+          Em um teste adaptativo, as questões são
           selecionadas de acordo com a resposta anterior. A cada questão
           administrada, o programa recalcula a sua nota, que está
           representada no eixo "y" do gráfico. A próxima questão
-          administrada levará em conta a nota provisória. A tendência é
+          administrada levará em conta a nota provisória.
+          Outra informação importante é que a cada certo, a nota
+          provisória aumenta um pouco. A cada erro, ela diminui um pouco.
+          A tendência é
           que ao longo da aplicação a diferença entre uma nota provisória
           e outra vá diminuindo. Conforme a aplicação vai chegando ao
           final, a nota provisória tende a mudar pouco.'

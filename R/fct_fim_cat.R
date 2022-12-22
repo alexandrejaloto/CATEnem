@@ -125,13 +125,7 @@ fim_cat <- function(
   )
 
   if (!is.null(tempo_estourado))
-  stop$tempo_estourado <- tempo_estourado
-
-  # fim <- list(
-  #     fim = fim,
-  #     convergencia = convergencia,
-  #     tempo_estourado = tempo_estourado
-  #   )
+    stop$tempo_estourado <- tempo_estourado
 
   return(stop)
 
