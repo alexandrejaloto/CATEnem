@@ -20,7 +20,7 @@ mod_CH_ui <- function(id){
 mod_CH_server <- function(id, r){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
-    df_CH <- CATEnem::df_CH
+    # df_CH <- CATEnem::df_CH
     # itens disponíveis
     rownames(df_CH) <- df_CH$cod_item
     itens_disponiveis <- df_CH[!grepl('instrucao$', df_CH$cod_item),]
