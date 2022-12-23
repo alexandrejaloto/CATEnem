@@ -2,7 +2,7 @@ Package: CATEnem
 Title: CAT Enem
 Version: 0.0.0.9000
 Authors@R: person('Alexandre', 'Jaloto', email = 'alexandrejaloto@gmail.com', role = c('cre', 'aut'))
-Description: Exame NAcional do Ensino Médio (Enem) versão em formato de Testagem Adaptativa Computadorizada (CAT).
+Description: Exame Nacional do Ensino Médio (Enem) versão em formato de Testagem Adaptativa Computadorizada (CAT).
 License: What license is it under?
 Imports: 
     config (>= 0.3.1),
