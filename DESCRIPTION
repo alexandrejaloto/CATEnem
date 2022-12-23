@@ -7,6 +7,7 @@ License: What license is it under?
 Imports: 
     config (>= 0.3.1),
     golem (>= 0.3.1),
+    mirt,
     shiny (>= 1.7.1),
     simCAT (>= 0.0.0.9000)
 Encoding: UTF-8

@@ -23,9 +23,9 @@ mod_apresentacao_server <- function(id){
 
     output$ui <- renderUI({
       tagList(
-        # img(src = 'www/enem200905907.jpg'),
         h1('CATEnem'),
-        'Você poderá responder à CATEnem, que é uma versão adaptativa do Enem. CAT é a sigla para
+        'Você poderá responder à CATEnem, que é uma versão adaptativa do Enem.
+        CAT é a sigla para
         Testagem Adaptativa Computadorizada em português. Nesse tipo de
         testagem, as questões vão sendo escolhidas de acordo com a sua
         resposta. De forma geral, quando você acerta, o programa seleciona
@@ -43,7 +43,8 @@ mod_apresentacao_server <- function(id){
         Claro que não seria exatamente a mesma nota, porque no dia da
         prova
         outros fatores interferem (como ansiedade, cansaço e
-        diferença das questões). Além disso, o Enem oficial não é
+        diferença no conteúdo das questões respondidas).
+        Além disso, o Enem oficial não é
         adaptativo. De todo modo, acredito que a CATEnem é um grande
         exercício preparatório para o Enem. Aproveite sem moderação!',
         br(),
@@ -69,9 +70,7 @@ mod_apresentacao_server <- function(id){
         radioButtons(
           ns('prova'),
           width = '100%',
-          label = 'Selecione a prova que deseja responder. ATENÇÃO:
-          após clicar em "Avançar", o tempo começará a contar. Você
-          terá 70 minutos para responder a prova.',
+          label = 'Selecione a prova que deseja responder.',
           choiceNames = c(
             'Ciências Humanas',
             'Ciências da Natureza',

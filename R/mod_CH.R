@@ -21,8 +21,6 @@ mod_CH_server <- function(id, r){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
 
-    # df_CH <- CATEnem::df_CH
-
     # itens disponíveis
     rownames(df_CH) <- df_CH$cod_item
     itens_disponiveis <- df_CH[!grepl('instrucao$', df_CH$cod_item),]
@@ -30,7 +28,6 @@ mod_CH_server <- function(id, r){
     output$ui <- renderUI({
       tagList(
         h5('Ciências Humanas'),
-
         shinyjs::useShinyjs(),
         uiOutput(ns('botao_alternativas')),
         shinyjs::disabled(
@@ -76,6 +73,10 @@ mod_CH_server <- function(id, r){
     # quando clicar em responder
     observeEvent(input$responder, {
 
+      # print(r$CH$aplicados)
+
+      # browser()
+
       # se for o primeiro item
       if(is.null(r$CH$aplicados)){
         r$CH <- cria_r_cat(
@@ -84,19 +85,24 @@ mod_CH_server <- function(id, r){
         )
       } else {
 
+          print(it_select())
+        # browser()
+
         # verifica se estourou o tempo
-        r$CH <- estourou_tempo(
-          mod = r$CH,
-          tempo_limite = .1
-        )
+        # r$CH <- estourou_tempo(
+        #   mod = r$CH,
+        #   tempo_limite = 30
+        # )
+        #
+        # # se estourou o tempo, interrompe a aplicação
+        # if(r$CH$tempo_estourado){
+        #
+        #   r$CH$fim$stop <- TRUE
+        #
+        #   # se não estourou o tempo, aplica o próximo item
+        # } else {
 
-        # se estourou o tempo, interrompe a aplicação
-        if(r$CH$tempo_estourado){
-
-          r$CH$fim$stop <- TRUE
-
-          # se não estourou o tempo, aplica o próximo item
-        } else {
+          # browser()
 
           r$CH <- atualiza_r_cat(
             mod = r$CH,
@@ -106,21 +112,39 @@ mod_CH_server <- function(id, r){
             modelo_cat = modelo_CH
           )
 
+
+          # mod = r$CH
+          # it_select = it_select()
+          # input = input$alternativas
+          # df = df_CH
+          # modelo_cat = modelo_CH
+
+
+          print(r$CH$aplicados)
+          print(r$CH$padrao[r$CH$aplicados])
+
+          print(df_CH$cod_item[r$CH$aplicados])
+
+          # browser()
+
           r$CH$fim <- fim_cat(
             # criterios
             rule = list(
-              fixed = 5
+              fixed = 20,
+              tempo_limite = .2
             ),
             current = list(
-              applied = length(r$CH$aplicados)
+              applied = length(r$CH$aplicados),
+              hist_resp_time = r$CH$hist_resp_time
             )
           )
-        }
+        # }
         if(r$CH$fim$stop){
 
           r <- r_fim(
             r = r,
-            area = 'CH'
+            area = 'CH',
+            modelo_cat = modelo_CH
           )
 
           r$grafico <- cria_grafico(

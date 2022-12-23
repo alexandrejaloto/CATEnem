@@ -1,6 +1,8 @@
 library(mirtCAT)
 library(dplyr)
 
+# importar função para atualizar sysdata
+source('rascunho/update.sysdata.R')
 
 # CH ----
 
@@ -18,7 +20,8 @@ modelo_CH <- mirtCAT::generate.mirt_object(
   '3PL'
 )
 
-usethis::use_data(modelo_CH)
+# usethis::use_data(modelo_CH, internal = TRUE)
+update.sysdata(object = 'modelo_CH')
 
 # CN ----
 

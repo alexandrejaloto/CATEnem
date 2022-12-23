@@ -5,8 +5,19 @@
 #' @return The return value, if any, from executing the function.
 #'
 #' @noRd
-r_fim <- function(r, area)
+r_fim <- function(r, area, modelo_cat)
 {
+
+  # caso o tempo tenha estourado, excluir a última resposta e tudo atrelado a ela
+  if(r[[area]]$fim$tempo_estourado)
+  {
+    r[[area]]$padrao[r[[area]]$aplicados[length(r[[area]]$aplicados)]] <- NA
+    r[[area]]$theta_hist <- r[[area]]$theta_hist[-length(r[[area]]$aplicados)]
+    r[[area]]$se_hist <- r[[area]]$se_hist[-length(r[[area]]$aplicados)]
+    r[[area]]$aplicados <- r[[area]]$aplicados[-length(r[[area]]$aplicados)]
+    r[[area]]$theta <- r[[area]]$theta_hist[length(r[[area]]$aplicados)]
+    r[[area]]$se <- r[[area]]$se[length(r[[area]]$aplicados)]
+  }
 
   r$theta_enem <- transform_nota(
     nota_01 = r[[area]]$theta,

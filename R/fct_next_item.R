@@ -9,10 +9,8 @@ next_item <- function(
   mod,
   df,
   itens_disponiveis,
-  sel.method = 'progressive',
-  thr = 20,
-  content.names = c(1:3),
-  content.props = rep(1/3, 3)
+  content.names = c(1:30),
+  content.props = rep(1/30, 30)
 ){
   # Retirar a instrução
   df <- df[!grepl('instrucao$', df$cod_item),]
@@ -32,14 +30,13 @@ next_item <- function(
     bank = as.matrix(itens_disponiveis[,c('a', 'b', 'c', 'd')]),
     theta = mod$theta,
     administered = out,
-    sel.method = sel.method,
+    sel.method = 'progressive',
     cat.type = 'fixed',
     thr = 20,
     content.names = content.names,
     content.props = content.props,
     content.items = itens_disponiveis$faceta
   )
-
 
   it_select <- which(df$cod_item == item_select$name)
 
