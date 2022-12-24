@@ -20,11 +20,11 @@ mod_LC_ingles_ui <- function(id){
 mod_LC_ingles_server <- function(id, r){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
-browser()
+
     # itens disponíveis
     rownames(df_LC) <- df_LC$cod_item
     itens_disponiveis <- df_LC[!grepl('instrucao$', df_LC$cod_item),]
-    itens_disponiveis <- subset (itens_disponiveis, itens_disponiveis$fator != 1)
+    itens_disponiveis <- subset (itens_disponiveis, is.na(itens_disponiveis$fator) | itens_disponiveis$fator != 'e')
 
     output$ui <- renderUI({
       tagList(
@@ -61,10 +61,10 @@ browser()
     # selecionar o item
     it_select <- reactive({
 
-      if(is.null(r$LC_ingles$aplicados)) return(0)
+      if(is.null(r$LC$aplicados)) return(0)
 
       next_item(
-        mod = r$LC_ingles,
+        mod = r$LC,
         df = df_LC,
         itens_disponiveis = itens_disponiveis
       )
@@ -75,41 +75,41 @@ browser()
     observeEvent(input$responder, {
 
       # se for o primeiro item
-      if(is.null(r$LC_ingles$aplicados)){
-        r$LC_ingles <- cria_r_cat(
-          mod = r$LC_ingles,
+      if(is.null(r$LC$aplicados)){
+        r$LC <- cria_r_cat(
+          mod = r$LC,
           df = df_LC
         )
       } else {
 
         print(it_select())
 
-        r$LC_ingles <- atualiza_r_cat(
-          mod = r$LC_ingles,
+        r$LC <- atualiza_r_cat(
+          mod = r$LC,
           it_select = it_select(),
           input = input$alternativas,
           df = df_LC,
-          modelo_cat = modelo_LC_ingles
+          modelo_cat = modelo_LC
         )
 
-        r$LC_ingles$fim <- fim_cat(
+        r$LC$fim <- fim_cat(
           # criterios
           rule = list(
             fixed = 20,
             tempo_limite = .2
           ),
           current = list(
-            applied = length(r$LC_ingles$aplicados),
-            hist_resp_time = r$LC_ingles$hist_resp_time
+            applied = length(r$LC$aplicados),
+            hist_resp_time = r$LC$hist_resp_time
           )
         )
 
-        if(r$LC_ingles$fim$stop){
+        if(r$LC$fim$stop){
 
           r <- r_fim(
             r = r,
-            area = 'LC_ingles',
-            modelo_cat = modelo_LC_ingles
+            area = 'LC',
+            modelo_cat = modelo_LC
           )
 
           r$grafico <- cria_grafico(

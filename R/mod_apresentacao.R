@@ -114,9 +114,9 @@ mod_apresentacao_server <- function(id){
       if(input$prova == "LC_ingles"){
         output$ui <- renderUI(mod_LC_ingles_ui("LC_ingles_1"))
       }
-      # if(input$prova == "LC_espanhol"){
-      #   output$ui <- renderUI(mod_TCLE_ui("TCLE_1"))
-      # }
+      if(input$prova == "LC_espanhol"){
+        output$ui <- renderUI(mod_LC_espanhol_ui("LC_espanhol_1"))
+      }
       if(input$prova == "MT"){
         output$ui <- renderUI(mod_MT_ui("MT_1"))
       }
