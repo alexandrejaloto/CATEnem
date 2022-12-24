@@ -86,5 +86,6 @@ app_server <- function( input, output, session ) {
   mod_CH_server("CH_ui_1", r)
   mod_CN_server("CN_1", r)
   mod_MT_server("MT_1", r)
+  mod_LC_ingles_server("LC_ingles_1", r)
   mod_devolutiva_server("devolutiva_1", r)
 }

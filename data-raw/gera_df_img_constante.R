@@ -93,6 +93,8 @@ for (area in areas)
   }
 }
 
+pars$TP_LINGUA <- ifelse(pars$TP_LINGUA == 0, 'i', 'e')
+
 # a <- subset(pars, CO_ITEM %in% pars$CO_ITEM[duplicated(pars$CO_ITEM)]) %>%
 #   arrange(CO_ITEM)
 
@@ -177,6 +179,7 @@ pars$cod_item <- paste0(
   sub('NA', '', .)
 
 pars$cod_item
+subset(pars, area == 'LC')$cod_item
 
 # save(pars, file = 'rdata/pars.RData')
 write.table(
@@ -291,10 +294,13 @@ for(area_ in areas)
   # area_ <- 'LC'
 
   pars. <- subset(pars, area == area_)
+pars.$cod_item
+pars.[7,]
+  pars.$TP_LINGUA
 
   pars. <- data.frame(
     cod_item = pars.$cod_item,
-    fator = area_,
+    fator = pars.$TP_LINGUA,
     faceta = pars.$CO_HABILIDADE,
     polo = 1,
     descricao =  paste0(
@@ -316,7 +322,7 @@ for(area_ in areas)
   )
 
   # pars.[duplicated(pars.$cod_item),]
-
+pars.$fator
   # imgs$cod_item <- paste0(
   #   'inst/app/www/',
   #   imgs$cod_item,
@@ -324,10 +330,12 @@ for(area_ in areas)
   # )
 
   # table(pars.$cad)
+# df_LC$cod_item
 
   pars. <- inner_join(pars., imgs, 'cod_item') %>%
     drop_na(a)
-
+pars.$fator
+pars.$cod_item
   instrucao <- data.frame(
 
     cod_item = 'instrucao',
