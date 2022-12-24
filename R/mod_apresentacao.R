@@ -108,27 +108,20 @@ mod_apresentacao_server <- function(id){
       if(input$prova == 'CH'){
         output$ui <- renderUI(mod_CH_ui("CH_ui_1"))
       }
-      # if(input$prova == "CN"){
-      #   output$ui <- renderUI(mod_TCLE_ui("TCLE_1"))
-
-      # }
-      # if(input$menor_maior == "CH"){
-      #   output$ui <- renderUI(mod_TCLE_ui("TCLE_1"))
-      # }
-      # if(input$menor_maior == "CH"){
+      if(input$prova == "CN"){
+        output$ui <- renderUI(mod_CN_ui("CN_1"))
+      }
+      # if(input$prova == "LC_ingles"){
       #   output$ui <- renderUI(mod_TCLE_ui("TCLE_1"))
       # }
-      # if(input$menor_maior == "CH"){
+      # if(input$prova == "LC_espanhol"){
       #   output$ui <- renderUI(mod_TCLE_ui("TCLE_1"))
       # }
+      if(input$prova == "MT"){
+        output$ui <- renderUI(mod_MT_ui("MT_1"))
+      }
 
     })
 
   })
 }
-
-## To be copied in the UI
-#
-
-## To be copied in the server
-#

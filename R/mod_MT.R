@@ -1,4 +1,4 @@
-#' CH UI Function
+#' MT UI Function
 #'
 #' @description A shiny Module.
 #'
@@ -7,27 +7,27 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_CH_ui <- function(id){
+mod_MT_ui <- function(id){
   ns <- NS(id)
   tagList(
     uiOutput(ns("ui"))
   )
 }
 
-#' CH Server Functions
+#' MT Server Functions
 #'
 #' @noRd
-mod_CH_server <- function(id, r){
+mod_MT_server <- function(id, r){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
 
     # itens disponíveis
-    rownames(df_CH) <- df_CH$cod_item
-    itens_disponiveis <- df_CH[!grepl('instrucao$', df_CH$cod_item),]
+    rownames(df_MT) <- df_MT$cod_item
+    itens_disponiveis <- df_MT[!grepl('instrucao$', df_MT$cod_item),]
 
     output$ui <- renderUI({
       tagList(
-        h5('Ciências Humanas'),
+        h5('Matemática'),
         shinyjs::useShinyjs(),
         uiOutput(ns('botao_alternativas')),
         shinyjs::disabled(
@@ -41,8 +41,8 @@ mod_CH_server <- function(id, r){
     })
 
     output$botao_alternativas <- renderUI({
-      r$carrossel_itens[[df_CH$widget[it_select() + 1]]](
-        df_CH,
+      r$carrossel_itens[[df_MT$widget[it_select() + 1]]](
+        df_MT,
         it_select() + 1, # adicionamos 1 por conta da instrução
         ns
       )
@@ -60,11 +60,11 @@ mod_CH_server <- function(id, r){
     # selecionar o item
     it_select <- reactive({
 
-      if(is.null(r$CH$aplicados)) return(0)
+      if(is.null(r$MT$aplicados)) return(0)
 
       next_item(
-        mod = r$CH,
-        df = df_CH,
+        mod = r$MT,
+        df = df_MT,
         itens_disponiveis = itens_disponiveis
       )
 
@@ -74,41 +74,41 @@ mod_CH_server <- function(id, r){
     observeEvent(input$responder, {
 
       # se for o primeiro item
-      if(is.null(r$CH$aplicados)){
-        r$CH <- cria_r_cat(
-          mod = r$CH,
-          df = df_CH
+      if(is.null(r$MT$aplicados)){
+        r$MT <- cria_r_cat(
+          mod = r$MT,
+          df = df_MT
         )
       } else {
 
         print(it_select())
 
-        r$CH <- atualiza_r_cat(
-          mod = r$CH,
+        r$MT <- atualiza_r_cat(
+          mod = r$MT,
           it_select = it_select(),
           input = input$alternativas,
-          df = df_CH,
-          modelo_cat = modelo_CH
+          df = df_MT,
+          modelo_cat = modelo_MT
         )
 
-        r$CH$fim <- fim_cat(
+        r$MT$fim <- fim_cat(
           # criterios
           rule = list(
             fixed = 20,
             tempo_limite = .2
           ),
           current = list(
-            applied = length(r$CH$aplicados),
-            hist_resp_time = r$CH$hist_resp_time
+            applied = length(r$MT$aplicados),
+            hist_resp_time = r$MT$hist_resp_time
           )
         )
 
-        if(r$CH$fim$stop){
+        if(r$MT$fim$stop){
 
           r <- r_fim(
             r = r,
-            area = 'CH',
-            modelo_cat = modelo_CH
+            area = 'MT',
+            modelo_cat = modelo_MT
           )
 
           r$grafico <- cria_grafico(
@@ -125,3 +125,9 @@ mod_CH_server <- function(id, r){
 
   })
 }
+
+## To be copied in the UI
+#
+
+## To be copied in the server
+#

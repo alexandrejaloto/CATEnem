@@ -39,7 +39,8 @@ modelo_CN <- mirtCAT::generate.mirt_object(
   '3PL'
 )
 
-usethis::use_data(modelo_CN)
+# usethis::use_data(modelo_CH, internal = TRUE)
+update.sysdata(object = 'modelo_CN')
 
 # LC ----
 
@@ -57,7 +58,8 @@ modelo_LC <- mirtCAT::generate.mirt_object(
   '3PL'
 )
 
-usethis::use_data(modelo_LC)
+# usethis::use_data(modelo_CH, internal = TRUE)
+update.sysdata(object = 'modelo_LC')
 
 
 # MT ----
@@ -76,5 +78,6 @@ modelo_MT <- mirtCAT::generate.mirt_object(
   '3PL'
 )
 
-usethis::use_data(modelo_MT)
+# usethis::use_data(modelo_CH, internal = TRUE)
+update.sysdata(object = 'modelo_MT')
 

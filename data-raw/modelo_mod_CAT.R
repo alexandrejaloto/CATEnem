@@ -1,4 +1,4 @@
-#' CH UI Function
+#' prova UI Function
 #'
 #' @description A shiny Module.
 #'
@@ -7,23 +7,23 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_CH_ui <- function(id){
+mod_prova_ui <- function(id){
   ns <- NS(id)
   tagList(
     uiOutput(ns("ui"))
   )
 }
 
-#' CH Server Functions
+#' prova Server Functions
 #'
 #' @noRd
-mod_CH_server <- function(id, r){
+mod_prova_server <- function(id, r){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
 
     # itens disponíveis
-    rownames(df_CH) <- df_CH$cod_item
-    itens_disponiveis <- df_CH[!grepl('instrucao$', df_CH$cod_item),]
+    rownames(df_prova) <- df_prova$cod_item
+    itens_disponiveis <- df_prova[!grepl('instrucao$', df_prova$cod_item),]
 
     output$ui <- renderUI({
       tagList(
@@ -41,8 +41,8 @@ mod_CH_server <- function(id, r){
     })
 
     output$botao_alternativas <- renderUI({
-      r$carrossel_itens[[df_CH$widget[it_select() + 1]]](
-        df_CH,
+      r$carrossel_itens[[df_prova$widget[it_select() + 1]]](
+        df_prova,
         it_select() + 1, # adicionamos 1 por conta da instrução
         ns
       )
@@ -60,11 +60,11 @@ mod_CH_server <- function(id, r){
     # selecionar o item
     it_select <- reactive({
 
-      if(is.null(r$CH$aplicados)) return(0)
+      if(is.null(r$prova$aplicados)) return(0)
 
       next_item(
-        mod = r$CH,
-        df = df_CH,
+        mod = r$prova,
+        df = df_prova,
         itens_disponiveis = itens_disponiveis
       )
 
@@ -74,41 +74,41 @@ mod_CH_server <- function(id, r){
     observeEvent(input$responder, {
 
       # se for o primeiro item
-      if(is.null(r$CH$aplicados)){
-        r$CH <- cria_r_cat(
-          mod = r$CH,
-          df = df_CH
+      if(is.null(r$prova$aplicados)){
+        r$prova <- cria_r_cat(
+          mod = r$prova,
+          df = df_prova
         )
       } else {
 
         print(it_select())
 
-        r$CH <- atualiza_r_cat(
-          mod = r$CH,
+        r$prova <- atualiza_r_cat(
+          mod = r$prova,
           it_select = it_select(),
           input = input$alternativas,
-          df = df_CH,
-          modelo_cat = modelo_CH
+          df = df_prova,
+          modelo_cat = modelo_prova
         )
 
-        r$CH$fim <- fim_cat(
+        r$prova$fim <- fim_cat(
           # criterios
           rule = list(
             fixed = 20,
             tempo_limite = .2
           ),
           current = list(
-            applied = length(r$CH$aplicados),
-            hist_resp_time = r$CH$hist_resp_time
+            applied = length(r$prova$aplicados),
+            hist_resp_time = r$prova$hist_resp_time
           )
         )
 
-        if(r$CH$fim$stop){
+        if(r$prova$fim$stop){
 
           r <- r_fim(
             r = r,
-            area = 'CH',
-            modelo_cat = modelo_CH
+            area = 'prova',
+            modelo_cat = modelo_prova
           )
 
           r$grafico <- cria_grafico(
