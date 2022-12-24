@@ -93,10 +93,6 @@ mod_MT_server <- function(id, r){
 
         r$MT$fim <- fim_cat(
           # criterios
-          rule = list(
-            fixed = 20,
-            tempo_limite = .2
-          ),
           current = list(
             applied = length(r$MT$aplicados),
             hist_resp_time = r$MT$hist_resp_time
@@ -125,9 +121,3 @@ mod_MT_server <- function(id, r){
 
   })
 }
-
-## To be copied in the UI
-#
-
-## To be copied in the server
-#

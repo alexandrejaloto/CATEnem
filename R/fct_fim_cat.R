@@ -29,6 +29,10 @@ fim_cat <- function(
   )
 ){
 
+  # estabelecer os padrões para CAT Enem
+  rule$tempo_limite <- 70
+  rule$fixed <- 20
+
   # if there is no item minimum, it will be 0
   if(is.null(rule$min.items))
     rule$min.items <- 0

@@ -93,10 +93,6 @@ mod_CN_server <- function(id, r){
 
         r$CN$fim <- fim_cat(
           # criterios
-          rule = list(
-            fixed = 20,
-            tempo_limite = .2
-          ),
           current = list(
             applied = length(r$CN$aplicados),
             hist_resp_time = r$CN$hist_resp_time

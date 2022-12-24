@@ -93,10 +93,6 @@ mod_CH_server <- function(id, r){
 
         r$CH$fim <- fim_cat(
           # criterios
-          rule = list(
-            fixed = 20,
-            tempo_limite = .2
-          ),
           current = list(
             applied = length(r$CH$aplicados),
             hist_resp_time = r$CH$hist_resp_time

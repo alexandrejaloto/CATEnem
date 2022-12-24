@@ -94,10 +94,6 @@ mod_LC_espanhol_server <- function(id, r){
 
         r$LC$fim <- fim_cat(
           # criterios
-          rule = list(
-            fixed = 20,
-            tempo_limite = .2
-          ),
           current = list(
             applied = length(r$LC$aplicados),
             hist_resp_time = r$LC$hist_resp_time
@@ -126,9 +122,3 @@ mod_LC_espanhol_server <- function(id, r){
 
   })
 }
-
-## To be copied in the UI
-#
-
-## To be copied in the server
-#
