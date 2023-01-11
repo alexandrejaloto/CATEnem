@@ -53,7 +53,7 @@ mod_devolutiva_server <- function(id, r){
           administrada, o programa recalcula a sua nota, que está
           representada no eixo "y" do gráfico. A próxima questão
           administrada levará em conta a nota provisória.
-          Outra informação importante é que a cada certo, a nota
+          Outra informação importante é que a cada acerto, a nota
           provisória aumenta um pouco. A cada erro, ela diminui um pouco.
           A tendência é
           que ao longo da aplicação a diferença entre uma nota provisória
