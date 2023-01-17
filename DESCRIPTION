@@ -8,7 +8,10 @@ Imports:
     config (>= 0.3.1),
     golem (>= 0.3.1),
     mirt,
+    pkgload,
     shiny (>= 1.7.1),
+    shinyjs,
+    shinyWidgets,
     simCAT (>= 0.0.0.9000)
 Encoding: UTF-8
 LazyData: true

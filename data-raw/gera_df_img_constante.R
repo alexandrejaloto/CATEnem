@@ -1,5 +1,5 @@
-library (dplyr)
-library (tidyr)
+library(dplyr)
+library(tidyr)
 library(textreadr)
 library(stringr)
 library(sjmisc)
@@ -110,7 +110,10 @@ ch <- subset(pars, area == 'CH') %>%
   arrange(year, application, CO_POSICAO)
 # mutate(CO_POSICAO = recode(CO_POSICAO, !!!level_key))
 
-ch$CO_POSICAO <- 1:45
+# ch$CO_POSICAO <- 1:45
+
+ch[ch$year %in% c(2009, 2017, 2018, 2019),]$CO_POSICAO <- 46:90
+ch[!(ch$year %in% c(2009, 2017, 2018, 2019)),]$CO_POSICAO <- 1:45
 
 table(ch$CO_POSICAO, useNA = 'always')
 
@@ -122,7 +125,11 @@ cn <- subset(pars, area == 'CN') %>%
   arrange(year, application, CO_POSICAO)
 # mutate(CO_POSICAO = recode(CO_POSICAO, !!!level_key))
 
-cn$CO_POSICAO <- 46:90
+# cn$CO_POSICAO <- 46:90
+
+cn[cn$year %in% c(2017, 2018, 2019),]$CO_POSICAO <- 91:135
+cn[cn$year %in% c(2009),]$CO_POSICAO <- 1:45
+cn[!(cn$year %in% c(2009, 2017, 2018, 2019)),]$CO_POSICAO <- 46:90
 
 table(cn$CO_POSICAO, useNA = 'always')
 
@@ -135,7 +142,10 @@ lc <- subset(pars, area == 'LC') %>%
 # arrange(desc(TP_LINGUA), CO_POSICAO)
 
 lc[lc$year == 2009,]$CO_POSICAO <- 91:135
-lc[lc$year != 2009,]$CO_POSICAO <- c(rep(91:95, 2), 96:135)
+lc[lc$year %in% c(2017, 2018, 2019),]$CO_POSICAO <- c(rep(1:5, 2), 6:45)
+# lc[lc$year != 2009,]$CO_POSICAO <- c(rep(91:95, 2), 96:135)
+lc[!(lc$year %in% c(2009, 2017, 2018, 2019)),]$CO_POSICAO <- c(rep(91:95, 2), 96:135)
+
 
 table(lc$CO_POSICAO, useNA = 'always')
 
@@ -192,9 +202,20 @@ write.table(
 
 # salvar imagens dos itens ----
 
-year <- 2010
+# gerar PDF
+# library(doconv)
+# for(year in 2015:2015)
+#   docx2pdf(
+#     paste0(
+#       'D:/OneDrive/Documentos/Doutorado/Tese/Provas/',
+#       year,
+#       '.docx'
+#     )
+#   )
 
-for(year in 2009:2010)
+year <- 2015
+
+for(year in 2016:2019)
 {
   enem <- read_document(paste0('rascunho/provas/', year, '.docx')) %>%
     data.frame()
@@ -223,6 +244,7 @@ for(year in 2009:2010)
   enem <- drop_na(enem) %>%
     select(cod_item)
 
+  # which(enem$cod_item == 'enem2010101038')
 
   enem$cod_item <- paste0(
     # 'inst/app/www/',
@@ -291,11 +313,11 @@ areas <- c('CH', 'CN', 'LC', 'MT')
 
 for(area_ in areas)
 {
-  # area_ <- 'LC'
+  area_ <- 'CH'
 
   pars. <- subset(pars, area == area_)
-pars.$cod_item
-pars.[7,]
+  pars.$cod_item
+  pars.[7,]
   pars.$TP_LINGUA
 
   pars. <- data.frame(
@@ -321,21 +343,28 @@ pars.[7,]
     d = 1
   )
 
-  # pars.[duplicated(pars.$cod_item),]
-pars.$fator
-  # imgs$cod_item <- paste0(
-  #   'inst/app/www/',
-  #   imgs$cod_item,
-  #   '.jpg'
-  # )
+  # 58*45
+  # pars.$fator
 
-  # table(pars.$cad)
-# df_LC$cod_item
+  # pars2 <- inner_join(pars., imgs, 'cod_item')
+  # %>%
+  #   drop_na(a)
+
+  # nao <- pars.[which(!(pars.$cod_item %in% imgs$cod_item)),]
+
+  nao <- imgs[which(!(imgs$cod_item %in% pars.$cod_item)),]
+
+  enem2009049001
+  which (pars.$cod_item == 'enem2009049001')
+
+  # which (imgs$cod_item == 'enem2010101038')
 
   pars. <- inner_join(pars., imgs, 'cod_item') %>%
     drop_na(a)
-pars.$fator
-pars.$cod_item
+
+  # pars.$fator
+  pars.$cod_item
+
   instrucao <- data.frame(
 
     cod_item = 'instrucao',
@@ -368,17 +397,7 @@ pars.$cod_item
     pars.
   )
 
-  # # salvar para uso
-  # eval(
-  #   parse(
-  #     text = paste0(
-  #       'usethis::use_data(df_',
-  #       area_,
-  #       ', overwrite = TRUE)'
-  #     )
-  #   )
-  # )
-
+  # salvar para uso
   update.sysdata(object = paste0('df_', area_))
 
   write.table(
@@ -391,7 +410,7 @@ pars.$cod_item
 
 }
 
-# apagar imagens que não estão do df ----
+# apagar imagens que não estão no df ----
 
 imgs <- list.files('data-raw/imagens') %>%
   sub('.jpg', '', .)
