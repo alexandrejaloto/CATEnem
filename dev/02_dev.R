@@ -15,7 +15,7 @@
 
 ## Dependencies ----
 ## Add one line by package you want to add as dependency
-usethis::use_package('shinyWidgets')
+usethis::use_package('ggplot2')
 usethis::use_dev_package('simCAT', remote = 'github::alexandrejaloto/simCAT')
 
 ## Add modules ----
