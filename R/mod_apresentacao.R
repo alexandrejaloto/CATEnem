@@ -49,7 +49,7 @@ mod_apresentacao_server <- function(id){
         exercício preparatório para o Enem. Aproveite sem moderação!',
         br(),
         br(),
-        'Se você quiser saber mais sobre como fuinciona a aplicação de
+        'Se você quiser saber mais sobre como funciona a aplicação de
         uma CAT e sobre a TRI,
         visite http://jaloto.shinyapps.io/app_tri ou entre em contato
         comigo: alexandrejaloto@gmail.com.',
@@ -92,7 +92,11 @@ mod_apresentacao_server <- function(id){
             ns("avancar"),
             label = "Avançar"
           )
-        )
+        ),
+        br(),
+        'Apoio:',
+        br(),
+        img(src = 'www/Catvante-07.PNG', width = 300)
       )
     })
 

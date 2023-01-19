@@ -17,9 +17,9 @@ source('rascunho/testlets.R')
 pars <- data.frame()
 
 areas <- c('CH', 'CN', 'LC', 'MT')
-area <- 'CH'
-year <- 2020
-application <- 1
+# area <- 'CH'
+# year <- 2020
+# application <- 1
 for (area in areas)
 {
   for (year in 2009:2020)
@@ -107,7 +107,8 @@ pars$TP_LINGUA <- ifelse(pars$TP_LINGUA == 0, 'i', 'e')
 # names(level_key) <- 46:180
 
 ch <- subset(pars, area == 'CH') %>%
-  arrange(year, application, CO_POSICAO)
+  arrange(year, application, CO_POSICAO) %>%
+  drop_na(CO_HABILIDADE)
 # mutate(CO_POSICAO = recode(CO_POSICAO, !!!level_key))
 
 # ch$CO_POSICAO <- 1:45
@@ -116,13 +117,14 @@ ch[ch$year %in% c(2009, 2017, 2018, 2019),]$CO_POSICAO <- 46:90
 ch[!(ch$year %in% c(2009, 2017, 2018, 2019)),]$CO_POSICAO <- 1:45
 
 table(ch$CO_POSICAO, useNA = 'always')
-
+table(ch$year)
 # CN
 # level_key <- rep(46:90, 3)
 # names(level_key) <- c(1:45, 91:180)
 
 cn <- subset(pars, area == 'CN') %>%
-  arrange(year, application, CO_POSICAO)
+  arrange(year, application, CO_POSICAO) %>%
+  drop_na(CO_HABILIDADE)
 # mutate(CO_POSICAO = recode(CO_POSICAO, !!!level_key))
 
 # cn$CO_POSICAO <- 46:90
@@ -138,7 +140,8 @@ table(cn$CO_POSICAO, useNA = 'always')
 # names(level_key) <- rep(c(1:45, 91:180)
 
 lc <- subset(pars, area == 'LC') %>%
-  arrange(year, application, TP_LINGUA, CO_POSICAO)
+  arrange(year, application, TP_LINGUA, CO_POSICAO) %>%
+  drop_na(CO_HABILIDADE)
 # arrange(desc(TP_LINGUA), CO_POSICAO)
 
 lc[lc$year == 2009,]$CO_POSICAO <- 91:135
@@ -154,7 +157,8 @@ table(lc$CO_POSICAO, useNA = 'always')
 # names(level_key) <- c(1:45, 91:180)
 
 mt <- subset(pars, area == 'MT') %>%
-  arrange(year, application, CO_POSICAO)
+  arrange(year, application, CO_POSICAO) %>%
+  drop_na(CO_HABILIDADE)
 # mutate(CO_POSICAO = recode(CO_POSICAO, !!!level_key))
 
 mt$CO_POSICAO <- 136:180
@@ -188,8 +192,8 @@ pars$cod_item <- paste0(
 ) %>%
   sub('NA', '', .)
 
-pars$cod_item
-subset(pars, area == 'LC')$cod_item
+# pars$cod_item
+# subset(pars, area == 'LC')$cod_item
 
 # save(pars, file = 'rdata/pars.RData')
 write.table(
@@ -215,7 +219,7 @@ write.table(
 
 year <- 2015
 
-for(year in 2016:2019)
+for(year in 2009:2019)
 {
   enem <- read_document(paste0('rascunho/provas/', year, '.docx')) %>%
     data.frame()
@@ -313,12 +317,12 @@ areas <- c('CH', 'CN', 'LC', 'MT')
 
 for(area_ in areas)
 {
-  area_ <- 'CH'
+  # area_ <- 'CH'
 
   pars. <- subset(pars, area == area_)
-  pars.$cod_item
-  pars.[7,]
-  pars.$TP_LINGUA
+  # pars.$cod_item
+  # pars.[7,]
+  # pars.$TP_LINGUA
 
   pars. <- data.frame(
     cod_item = pars.$cod_item,
@@ -352,10 +356,10 @@ for(area_ in areas)
 
   # nao <- pars.[which(!(pars.$cod_item %in% imgs$cod_item)),]
 
-  nao <- imgs[which(!(imgs$cod_item %in% pars.$cod_item)),]
+  # nao <- imgs[which(!(imgs$cod_item %in% pars.$cod_item)),]
 
-  enem2009049001
-  which (pars.$cod_item == 'enem2009049001')
+  # enem2009049001
+  # which (pars.$cod_item == 'enem2009049001')
 
   # which (imgs$cod_item == 'enem2010101038')
 
@@ -363,7 +367,7 @@ for(area_ in areas)
     drop_na(a)
 
   # pars.$fator
-  pars.$cod_item
+  # pars.$cod_item
 
   instrucao <- data.frame(
 
