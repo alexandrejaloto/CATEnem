@@ -96,7 +96,7 @@ mod_apresentacao_server <- function(id){
         br(),
         'Apoio:',
         br(),
-        img(src = 'Catvante-07.PNG', width = 300)
+        img(src ='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/Catvante-07.png', width = 300)
       )
     })
 
