@@ -68,7 +68,7 @@ Bolsa de estudo de 2019 a 2023
 
 Preparo dos itens e suporte na elaboração da aplicação
 
-<img src='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/Logo_INEP.PNG' alt='' width='250'/>
+<img src='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/Logo_INEP.png' alt='' width='250'/>
 
 Afastamento do autor principal da CATEnem entre 2019 e 2023
 
