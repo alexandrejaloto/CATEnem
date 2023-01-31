@@ -53,3 +53,28 @@ A aplicação também está disponível em
 garantimos que ela estará sempre acessível, pois há um limite de uso
 nesse servidor. Por isso, recomendamos a instalação da aplicação em sua
 máquina.
+
+A CATEnem foi desenvolvida com os seguintes apoios:
+
+<img src='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/usf.png' alt='' width='100'/>
+
+Bolsa de estudo em 2019
+
+<img src='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/capes.png' alt='' width='100'/>
+
+Bolsa de estudo de 2019 a 2023
+
+<img src='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/Catvante-07.png' alt='' width='200'/>
+
+Preparo dos itens e suporte na elaboração da aplicação
+
+<img src='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/Logo_INEP.PNG' alt='' width='250'/>
+
+Afastamento do autor principal da CATEnem entre 2019 e 2023
+
+Ainda que esta aplicação tenha sido elaborada com o apoio do Inep, ela
+não configura uma aplicação oficial do instituto. Este trabalho não
+representa necessariamente o ponto de vista do Inep. As opiniões
+expressas nesta publicação são de inteira e exclusiva responsabilidade
+dos autores, não expressando necessariamente o ponto de vista do Inep ou
+do Ministério da Educação.
