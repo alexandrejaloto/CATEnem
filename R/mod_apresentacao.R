@@ -94,9 +94,29 @@ mod_apresentacao_server <- function(id){
           )
         ),
         br(),
-        'Apoio:',
+        'A CATEnem foi desenvolvida com os seguintes apoios:',
         br(),
-        img(src ='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/Catvante-07.png', width = 300)
+        img(src='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/usf.png', width=100),
+        br(),
+        'Bolsa de estudo em 2019',
+        br(),
+        br(),
+        img(src='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/capes.png', width=100),
+        br(),
+        'Bolsa de estudo de 2019 a 2023',
+        br(),
+        br(),
+        img(src='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/Catvante-07.png', width=200),
+        br(),
+        'Preparo dos itens e suporte na elaboração da aplicação',
+        br(),
+        br(),
+        img(src='https://raw.githubusercontent.com/alexandrejaloto/CATEnem/master/data-raw/Logo_INEP.png', width=250),
+        br(),
+        'Afastamento do autor principal da CATEnem entre 2019 e 2023',
+        br(),
+        br(),
+        'Ainda que esta aplicação tenha sido elaborada com o apoio do Inep, ela não configura uma aplicação oficial do instituto. Este trabalho não representa necessariamente o ponto de vista do Inep. As opiniões expressas nesta publicação são de inteira e exclusiva responsabilidade dos autores, não expressando necessariamente o ponto de vista do Inep ou do Ministério da Educação.'
       )
     })
 
