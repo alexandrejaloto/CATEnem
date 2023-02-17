@@ -68,7 +68,7 @@ for (area in areas)
         )
       }
 
-      if(application == 2 & year %in% c(2016, 2020))
+      if(application == 2 & year %in% c(2016))
       {
         # filter items of each area
         items_area <- subset(items, SG_AREA = area) %>%
@@ -113,8 +113,8 @@ ch <- subset(pars, area == 'CH') %>%
 
 # ch$CO_POSICAO <- 1:45
 
-ch[ch$year %in% c(2009, 2017, 2018, 2019),]$CO_POSICAO <- 46:90
-ch[!(ch$year %in% c(2009, 2017, 2018, 2019)),]$CO_POSICAO <- 1:45
+ch[ch$year %in% c(2009, 2017, 2018, 2019, 2020),]$CO_POSICAO <- 46:90
+ch[!(ch$year %in% c(2009, 2017, 2018, 2019, 2020)),]$CO_POSICAO <- 1:45
 
 table(ch$CO_POSICAO, useNA = 'always')
 table(ch$year)
@@ -129,12 +129,12 @@ cn <- subset(pars, area == 'CN') %>%
 
 # cn$CO_POSICAO <- 46:90
 
-cn[cn$year %in% c(2017, 2018, 2019),]$CO_POSICAO <- 91:135
+cn[cn$year %in% c(2017, 2018, 2019, 2020),]$CO_POSICAO <- 91:135
 cn[cn$year %in% c(2009),]$CO_POSICAO <- 1:45
-cn[!(cn$year %in% c(2009, 2017, 2018, 2019)),]$CO_POSICAO <- 46:90
+cn[!(cn$year %in% c(2009, 2017, 2018, 2019, 2020)),]$CO_POSICAO <- 46:90
 
 table(cn$CO_POSICAO, useNA = 'always')
-
+table(cn$year)
 # LC
 # level_key <- rep(c(rep(91:95, 2), 96:135), 3)
 # names(level_key) <- rep(c(1:45, 91:180)
@@ -145,13 +145,13 @@ lc <- subset(pars, area == 'LC') %>%
 # arrange(desc(TP_LINGUA), CO_POSICAO)
 
 lc[lc$year == 2009,]$CO_POSICAO <- 91:135
-lc[lc$year %in% c(2017, 2018, 2019),]$CO_POSICAO <- c(rep(1:5, 2), 6:45)
+lc[lc$year %in% c(2017, 2018, 2019, 2020),]$CO_POSICAO <- c(rep(1:5, 2), 6:45)
 # lc[lc$year != 2009,]$CO_POSICAO <- c(rep(91:95, 2), 96:135)
-lc[!(lc$year %in% c(2009, 2017, 2018, 2019)),]$CO_POSICAO <- c(rep(91:95, 2), 96:135)
+lc[!(lc$year %in% c(2009, 2017, 2018, 2019, 2020)),]$CO_POSICAO <- c(rep(91:95, 2), 96:135)
 
 
 table(lc$CO_POSICAO, useNA = 'always')
-
+table(lc$year)
 # MT
 # level_key <- rep(46:90, 3)
 # names(level_key) <- c(1:45, 91:180)
@@ -164,7 +164,7 @@ mt <- subset(pars, area == 'MT') %>%
 mt$CO_POSICAO <- 136:180
 
 table(mt$CO_POSICAO, useNA = 'always')
-
+table(mt$year)
 
 # pars2 <- pars[duplicated(pars$CO_ITEM),]
 # table(pars2$year)
@@ -219,7 +219,7 @@ write.table(
 
 year <- 2015
 
-for(year in 2009:2019)
+for(year in 2009:2020)
 {
   enem <- read_document(paste0('rascunho/provas/', year, '.docx')) %>%
     data.frame()
